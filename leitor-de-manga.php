@@ -71,3 +71,11 @@ function lm_salvar_meta_box($post_id) {
     }
 }
 add_action('save_post', 'lm_salvar_meta_box');
+// Definir template para Capítulos
+function lm_template_capitulos($template) {
+    if (is_singular('capitulos')) {
+        return plugin_dir_path(__FILE__) . 'templates/single-capitulos.php';
+    }
+    return $template;
+}
+add_filter('single_template', 'lm_template_capitulos');
