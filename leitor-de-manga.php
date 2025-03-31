@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// Registrar Custom Post Type "Mangas"
+// Registrar Custom Post Type "Mangás"
 function lm_registrar_cpt_mangas() {
     $args = array(
         'labels' => array(
@@ -25,10 +25,22 @@ function lm_registrar_cpt_mangas() {
         'has_archive' => true,
         'supports' => array('title', 'thumbnail', 'editor'),
         'menu_icon' => 'dashicons-book',
+        'rewrite' => array('slug' => 'manga'), // A URL para Mangás será agora /manga/
     );
     register_post_type('mangas', $args);
 }
 add_action('init', 'lm_registrar_cpt_mangas');
+
+// Adicionar o botão de alternância para modo claro/escuro
+function lm_adicionar_modo_escuro() {
+    ?>
+    <button id="modo-toggle" style="position: fixed; top: 10px; right: 10px; z-index: 9999; padding: 10px; background-color: #333; color: white; border: none; border-radius: 5px;">
+        Modo Escuro/Claro
+    </button>
+    <?php
+}
+add_action('wp_footer', 'lm_adicionar_modo_escuro');
+
 
 // Registrar Custom Post Type "Capítulos" e associá-lo aos Mangás
 function lm_registrar_cpt_capitulos() {
@@ -41,11 +53,12 @@ function lm_registrar_cpt_capitulos() {
         'has_archive' => false,
         'supports' => array('title', 'editor', 'thumbnail'),
         'menu_icon' => 'dashicons-media-document',
-        'rewrite' => array('slug' => 'capitulo'),
+        'rewrite' => array('slug' => 'capitulo'), // A URL para Capítulos será agora /capitulo/
     );
     register_post_type('capitulos', $args);
 }
 add_action('init', 'lm_registrar_cpt_capitulos');
+
 
 // Criar relacionamento entre Mangás e Capítulos
 function lm_adicionar_meta_box() {
@@ -79,3 +92,13 @@ function lm_template_capitulos($template) {
     return $template;
 }
 add_filter('single_template', 'lm_template_capitulos');
+// Carrega o estilo do plugin
+function lm_incluir_estilos() {
+    wp_enqueue_style('leitor-manga-style', plugin_dir_url(__FILE__) . 'assets/css/style.css');
+}
+add_action('wp_enqueue_scripts', 'lm_incluir_estilos');
+// Carrega o script de alternância de modo escuro/claro
+function lm_incluir_scripts() {
+    wp_enqueue_script('leitor-manga-script', plugin_dir_url(__FILE__) . 'assets/js/script.js', array(), null, true);
+}
+add_action('wp_enqueue_scripts', 'lm_incluir_scripts');

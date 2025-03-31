@@ -1,0 +1,61 @@
+/* Estilo do Modo Claro */
+body {
+    background-color: #fff;
+    color: #000;
+    font-family: Arial, sans-serif;
+}
+
+.conteudo-manga img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Estilo do Modo Escuro */
+body.modo-escuro {
+    background-color: #121212;
+    color: #fff;
+}
+
+body.modo-escuro .conteudo-manga img {
+    filter: brightness(0.8);
+}
+
+.navegacao-manga .botao-manga {
+    background: #444;
+}
+
+body.modo-escuro .navegacao-manga .botao-manga {
+    background: #888;
+}
+
+/* Estilo do botão de alternância de modo escuro/claro */
+#modo-toggle {
+    position: fixed !important;
+    top: 45px !important;   /* Ajusta a posição para um pouco mais abaixo */
+    right: 20px !important; /* Fixa o botão no canto superior direito */
+    z-index: 9999 !important;
+    padding: 10px 20px !important; /* Define padding para um tamanho adequado */
+    background-color: #333 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+    font-size: 14px !important;
+    display: inline-block !important; /* Garante que o botão tenha um tamanho adequado */
+    height: auto !important; /* Impede que o botão ocupe altura total */
+    line-height: normal !important; /* Corrige possíveis distorções de altura */
+}
+
+#modo-toggle:hover {
+    background-color: #555 !important;
+}
+
+
+#modo-toggle:hover {
+    background-color: #555;
+}
+
+
+#modo-toggle:hover {
+    background-color: #555;
+}
