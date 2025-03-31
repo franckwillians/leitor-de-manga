@@ -31,31 +31,64 @@ body.modo-escuro .navegacao-manga .botao-manga {
 /* Estilo do botão de alternância de modo escuro/claro */
 #modo-toggle {
     position: fixed !important;
-    top: 45px !important;   /* Ajusta a posição para um pouco mais abaixo */
-    right: 20px !important; /* Fixa o botão no canto superior direito */
+    top: 10px !important;  /* Ajusta a posição para o cabeçalho */
+    right: 10px !important; /* Fixa o botão no canto superior direito */
     z-index: 9999 !important;
-    padding: 10px 20px !important; /* Define padding para um tamanho adequado */
-    background-color: #333 !important;
-    color: white !important;
+    background: none !important;
     border: none !important;
-    border-radius: 5px !important;
-    cursor: pointer !important;
-    font-size: 14px !important;
-    display: inline-block !important; /* Garante que o botão tenha um tamanho adequado */
-    height: auto !important; /* Impede que o botão ocupe altura total */
-    line-height: normal !important; /* Corrige possíveis distorções de altura */
+    padding: 0 !important;  /* Remove padding extra */
+    margin: 0 !important;   /* Remove margin extra */
+    width: 24px !important; /* Define a largura do botão */
+    height: 24px !important; /* Define a altura do botão */
 }
 
-#modo-toggle:hover {
-    background-color: #555 !important;
+#modo-toggle img {
+    width: 100% !important;
+    height: 100% !important;
 }
 
-
-#modo-toggle:hover {
-    background-color: #555;
+/* Estilo do botão de alternância de modo de leitura */
+#leitura-toggle {
+    position: fixed !important;
+    bottom: 60px !important;  /* Ajusta a posição para um pouco acima do botão de modo escuro/claro */
+    right: 20px !important;   /* Fixa o botão no canto inferior direito */
+    z-index: 9998 !important;
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;  /* Remove padding extra */
+    margin: 0 !important;   /* Remove margin extra */
+    width: 24px !important; /* Define a largura do botão */
+    height: 24px !important; /* Define a altura do botão */
 }
 
+#leitura-toggle img {
+    width: 100% !important;
+    height: 100% !important;
+}
 
-#modo-toggle:hover {
-    background-color: #555;
+/* Estilos para a página Home */
+.grid-titulos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.titulo-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.filtros {
+    margin-bottom: 20px;
+}
+
+.filtros label {
+    margin-right: 10px;
+}
+
+.filtros select,
+.filtros input {
+    margin-right: 20px;
 }

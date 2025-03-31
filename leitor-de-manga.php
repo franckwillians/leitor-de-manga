@@ -31,16 +31,21 @@ function lm_registrar_cpt_mangas() {
 }
 add_action('init', 'lm_registrar_cpt_mangas');
 
-// Adicionar o botão de alternância para modo claro/escuro
+// Adicionar o botão de alternância para modo claro/escuro no cabeçalho
 function lm_adicionar_modo_escuro() {
     ?>
-    <button id="modo-toggle" style="position: fixed; top: 10px; right: 10px; z-index: 9999; padding: 10px; background-color: #333; color: white; border: none; border-radius: 5px;">
-        Modo Escuro/Claro
+    <button id="modo-toggle" style="position: fixed; top: 10px; right: 10px; z-index: 9999; background: none; border: none; padding: 0; margin: 0; width: 24px; height: 24px;">
+        <img src="<?php echo plugin_dir_url(__FILE__); ?>assets/images/mode-icon.png" alt="Modo Claro/Escuro" style="width: 100%; height: 100%;">
+    </button>
+    <?php
+    // Adicionar o botão de alternância de modos de leitura no rodapé
+    ?>
+    <button id="leitura-toggle" style="position: fixed; bottom: 60px; right: 20px; z-index: 9998; background: none; border: none; padding: 0; margin: 0; width: 24px; height: 24px;">
+        <img src="<?php echo plugin_dir_url(__FILE__); ?>assets/images/reading-mode-icon.png" alt="Modo de Leitura" style="width: 100%; height: 100%;">
     </button>
     <?php
 }
 add_action('wp_footer', 'lm_adicionar_modo_escuro');
-
 
 // Registrar Custom Post Type "Capítulos" e associá-lo aos Mangás
 function lm_registrar_cpt_capitulos() {
@@ -58,7 +63,6 @@ function lm_registrar_cpt_capitulos() {
     register_post_type('capitulos', $args);
 }
 add_action('init', 'lm_registrar_cpt_capitulos');
-
 
 // Criar relacionamento entre Mangás e Capítulos
 function lm_adicionar_meta_box() {
@@ -84,6 +88,7 @@ function lm_salvar_meta_box($post_id) {
     }
 }
 add_action('save_post', 'lm_salvar_meta_box');
+
 // Definir template para Capítulos
 function lm_template_capitulos($template) {
     if (is_singular('capitulos')) {
@@ -92,13 +97,16 @@ function lm_template_capitulos($template) {
     return $template;
 }
 add_filter('single_template', 'lm_template_capitulos');
-// Carrega o estilo do plugin
+
+// Carregar o estilo do plugin
 function lm_incluir_estilos() {
     wp_enqueue_style('leitor-manga-style', plugin_dir_url(__FILE__) . 'assets/css/style.css');
 }
 add_action('wp_enqueue_scripts', 'lm_incluir_estilos');
-// Carrega o script de alternância de modo escuro/claro
+
+// Carregar o script de alternância de modo escuro/claro
 function lm_incluir_scripts() {
     wp_enqueue_script('leitor-manga-script', plugin_dir_url(__FILE__) . 'assets/js/script.js', array(), null, true);
 }
 add_action('wp_enqueue_scripts', 'lm_incluir_scripts');
+?>
